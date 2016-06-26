@@ -68,3 +68,7 @@ class Main(QtWidgets.QMainWindow):
 
     def return_to_global_window(self):
         self.stack.setCurrentIndex(0)
+
+    def add_game(self, index, widget_game):
+        self.stack.insertWidget(index, widget_game)
+        self.global_game_window.create_game_button()
