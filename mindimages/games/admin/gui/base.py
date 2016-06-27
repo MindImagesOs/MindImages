@@ -10,8 +10,12 @@ from PyQt5 import QtWidgets
 class Widget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self.resize(500, 500)
-        self.setStyleSheet("background-color: green")
+        # self.setFixedSize(500, 500)
+
+        self.box = QtWidgets.QVBoxLayout(self)
+        self.btn = QtWidgets.QPushButton()
+
+        self.box.addWidget(self.btn)
 
 
 

@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from functools import partial
+
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from PyQt5.QtCore import pyqtSlot
 
 from gui import gui_abs as gui
 from gui import manager_window
@@ -71,6 +74,12 @@ class Main(QtWidgets.QMainWindow):
 
     def add_game(self, index, widget_game, run_button):
         self.stack.insertWidget(index, widget_game)
-        self.global_game_window.create_game_button(run_button,
+        button = self.global_game_window.create_game_button(run_button,
                                                    'run_button',
                                                    index)
+        button.clicked.connect(partial(self.press_game, index))
+
+    @pyqtSlot(int)
+    def press_game(self, s):
+        print(s)
+        self.stack.setCurrentIndex(s)
