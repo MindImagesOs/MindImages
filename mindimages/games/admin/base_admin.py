@@ -3,20 +3,9 @@
 
 
 import sys
+import os
 from PyQt5 import QtWidgets
+root = os.path.join(os.path.dirname(__file__))
 
-
-class Widget(QtWidgets.QWidget):
-    def __init__(self):
-        super().__init__()
-        self.resize(500, 500)
-        self.setStyleSheet("background-color: green")
-
-
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    # app.setStyleSheet(open('./etc/{0}.qss'.format('style'), "r").read())
-    main = Widget()
-    main.show()
-    sys.exit(app.exec_())
+tool_button = os.path.join(root, 'resouces/icons/base_tool.png')
+from ..admin.gui import base

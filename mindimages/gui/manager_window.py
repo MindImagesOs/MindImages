@@ -14,16 +14,18 @@ class GameBox(gui.Frame):
         self.box.setAlignment(
                 QtCore.Qt.AlignTop | QtCore.Qt.AlignCenter)
 
-    def create_button(self, name, index, icon_size):
-        button = gui.GameButton(name, self, index)
+    def create_button(self, path, name, index, icon_size):
+        button = gui.GameButton(path, name, index, self)
         button.setIconSize(
                 QtCore.QSize(icon_size, icon_size))
         self.box.insertWidget(index, button)
         return button
 
+
 class Display(gui.ToolGame):
     def __init__(self, name, parent):
         super().__init__(name, parent)
+
 
 class MangerWindow(gui.MenegerFrame):
     def __init__(self, name, parent, config, visual_parent):
@@ -78,10 +80,10 @@ class MangerWindow(gui.MenegerFrame):
         self.setting_layout.insertWidget(-1, self.exit)
         self.setting_layout.addStretch(0)
 
-
     def set_actions_setting_buttons(self):
         self.parent.register_control(self.exit, "exit")
 
-    def create_game_button(self, name, index):
-        return self.tool_game_box.create_button(name, index, self.cfg[
-            "icon_game_size"])
+    def create_game_button(self, path, name, index):
+        return self.tool_game_box.create_button(path, name, index,
+                                                self.cfg[
+                                                    "icon_game_size"])

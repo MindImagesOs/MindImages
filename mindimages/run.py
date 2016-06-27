@@ -26,12 +26,14 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open('{}'.format(css_path), "r").read())
     m = base_window.Main(config)
-    m.showFullScreen()
 
-    admin_widget = base_admin.Widget()
-    m.add_game(1, admin_widget)
+
+    admin_widget = base_admin.base.Widget()
+    admin_run_button = base_admin.tool_button
+    m.add_game(1, admin_widget, admin_run_button)
 
     m.show()
+    m.showFullScreen()
     app.exec()
 
 

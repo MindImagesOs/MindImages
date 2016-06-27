@@ -53,9 +53,9 @@ QFrame#setting_box {
     /*border: 5px solid #adadad;*/
 /*}*/
 
-/*QToolButton#seqgametool {*/
-    /*border: 5px solid red;*/
-/*}*/
+QToolButton#seqgametool {
+    border: 5px solid red;
+}
 
 /*-------------SETTINGS_BUTTONS-----------------*/
 

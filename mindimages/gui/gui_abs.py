@@ -6,8 +6,7 @@
 """
 
 
-from PyQt5 import QtWidgets
-from PyQt5 import QtCore
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QObject
 
 _box_margin = (1, 10, 21, 1)
@@ -76,9 +75,11 @@ class SettingButton(QtWidgets.QPushButton, AbsGui):
         self.setFixedSize(size + 2, size + 2)
 
 class GameButton(QtWidgets.QToolButton, AbsGui):
-    def __init__(self, name, parent, index):
-        super().__init__(name, parent,)
+    def __init__(self, path, name, index, parent):
+        super().__init__(name, parent)
         self.index = index
+        print(path)
+        self.setIcon(QtGui.QIcon(path))
 
     def __repr__(self):
         return """
