@@ -8,7 +8,10 @@ import yaml
 from PyQt5 import QtWidgets
 
 from gui import base_window
-from games.admin import base_admin
+from games.admin import main_game
+from libs import plagin_manager
+
+t = plagin_manager.Manager()
 
 
 def get_config(path):
@@ -28,9 +31,9 @@ def main():
     m = base_window.Main(config)
 
 
-    admin_widget = base_admin.base.Widget()
-    admin_run_button = base_admin.tool_button
-    m.add_game(1, admin_widget, admin_run_button)
+    # admin_widget = main_game.base.Widget()
+    # admin_run_button = main_game.tool_button
+    # m.add_game(1, admin_widget, admin_run_button)
 
     m.show()
     m.showFullScreen()
