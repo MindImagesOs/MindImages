@@ -4,6 +4,9 @@
 import os
 import yaml
 
+from PyQt5 import QtWidgets
+from PyQt5 import QtCore
+
 config_default = "games_plugins.yaml"
 config_path = os.path.join('etc', config_default)
 
@@ -32,3 +35,23 @@ class Manager:
                           self.config['mod_entry_point'])
             pluguns_list.append(mod.BaseGameWidget())
         return pluguns_list
+
+
+class Plugin(QtWidgets.QFrame):
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color: white")
+
+    @property
+    def run_icon(self):
+        """
+         метод должен вернуть путь к иконке str
+        """
+        raise Exception('необходимо переопределить в классе потомке')
+
+    @property
+    def name(self):
+        """
+        метод должен вернуть имя плагина str
+        """
+        raise Exception('необходимо переопределить в классе потомке')

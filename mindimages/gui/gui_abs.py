@@ -47,12 +47,17 @@ class Frame(QtWidgets.QFrame, AbsGui):
 
 
 class StackedLayout(QtWidgets.QStackedLayout):
-    def __init__(self, parent=None, *__args):
+    def __init__(self, *__args):
         super().__init__(*__args)
-
 
     def add_widget(self, QWidget):
         self.addWidget(QWidget)
+
+    def add_content(self, QWidget):
+        self.insertWidget(0, QWidget)
+
+    def return_to_content(self):
+        self.setCurrentIndex(0)
 
 class MenegerFrame(QtWidgets.QFrame, AbsGui):
     def __init__(self, name, parent):
@@ -78,12 +83,11 @@ class GameButton(QtWidgets.QToolButton, AbsGui):
     def __init__(self, path, name, index, parent):
         super().__init__(name, parent)
         self.index = index
-        print(path)
         self.setIcon(QtGui.QIcon(path))
 
-    def __repr__(self):
-        return """
-        object - {};
-        object_name - {};
-        index - {}
-        """.format(self.__class__.__name__, self._name, self.index)
+    # def __repr__(self):
+    #     return """
+    #     object - {};
+    #     object_name - {};
+    #     index - {}
+    #     """.format(self.__class__.__name__, self._name, self.index)

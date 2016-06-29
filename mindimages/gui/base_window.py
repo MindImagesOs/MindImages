@@ -4,12 +4,13 @@
 import sys
 from functools import partial
 
-from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSlot
 
 from gui import gui_abs as gui
 from gui import manager_window
+
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self, config):
@@ -18,15 +19,13 @@ class Main(QtWidgets.QMainWindow):
         self.center = gui.Frame("center_frame", self)
         self.setCentralWidget(self.center)
 
-        self.stack = gui.StackedLayout()
-        box = gui.Box(gui.Box._horizontal, self.center)
-        box.addLayout(self.stack)
+        self.stack = gui.StackedLayout(self.center)
 
         self.global_game_window = manager_window.MangerWindow(
-                "manager_window", self, config["global_game_window"],
-                self.center,
+            "manager_window", self, config["global_game_window"],
+            self.center,
         )
-        self.stack.add_widget(self.global_game_window)
+        self.stack.add_content(self.global_game_window)
 
     def register_control(self, control_object, slot, *args):
         control_object.clicked.connect(getattr(self, slot))
@@ -34,30 +33,6 @@ class Main(QtWidgets.QMainWindow):
     @QtCore.pyqtSlot()
     def exit(self):
         sys.exit()
-
-    def add_games(self):
-        self.adapter_plugin = plugin.AdapterPluginsGame(
-                plugin._PLUGIN_DIR, plugin._MOD_NAME,
-                plugin._CLASS_NAME)
-        mod_objects = self.adapter_plugin.plugin_objects(
-                self.adapter_plugin.paths)
-        for game_widget in mod_objects:
-            object_name = game_widget.name
-            index = game_widget.index
-            button_name = game_widget.tool_btn_name
-            home_btn = game_widget.home_btn
-            style_name = game_widget.css_path
-            print(game_widget)
-            # print(style_name)
-            #
-            # self.plugin_valid(index, button_name, object_name)
-            #
-            # home_btn.clicked.connect(self.return_to_global_window)
-            # self.stack.insertWidget(index, game_widget())
-            #
-            # button = self.global_game_window.add_run_button(
-            #         button_name, index)
-            # button.clicked.connect(partial(self.press_game, index))
 
     def plugin_valid(self, *atr):
         for i in atr:
@@ -74,17 +49,18 @@ class Main(QtWidgets.QMainWindow):
 
     @pyqtSlot(int)
     def press_game(self, s):
-        print(s)
         self.stack.setCurrentIndex(s)
 
     def add_plugin(self, plugin_list):
-        for plugin in plugin_list:
-            self.global_game_window.add_run_button(plugin.run_icon,
-                                                   plugin.name, 1)
+        for index, plugin in enumerate(plugin_list, start=1):
+            run_btn = self.global_game_window.add_run_button(
+                plugin.run_icon,
+                plugin.name, index)
+            run_btn.clicked.connect(partial(self.press_game, index))
             self.stack.addWidget(plugin)
 
     def keyPressEvent(self, QKeyEvent):
         if QKeyEvent.key() == QtCore.Qt.Key_1:
             self.stack.setCurrentIndex(1)
         elif QKeyEvent.key() == QtCore.Qt.Key_0:
-            self.stack.setCurrentIndex(0)
+            self.stack.return_to_content()
