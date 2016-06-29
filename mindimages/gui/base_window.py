@@ -55,7 +55,7 @@ class Main(QtWidgets.QMainWindow):
             # home_btn.clicked.connect(self.return_to_global_window)
             # self.stack.insertWidget(index, game_widget())
             #
-            # button = self.global_game_window.create_game_button(
+            # button = self.global_game_window.add_run_button(
             #         button_name, index)
             # button.clicked.connect(partial(self.press_game, index))
 
@@ -72,14 +72,19 @@ class Main(QtWidgets.QMainWindow):
     def return_to_global_window(self):
         self.stack.setCurrentIndex(0)
 
-    def add_game(self, index, widget_game, run_button):
-        self.stack.insertWidget(index, widget_game)
-        button = self.global_game_window.create_game_button(run_button,
-                                                   'run_button',
-                                                   index)
-        button.clicked.connect(partial(self.press_game, index))
-
     @pyqtSlot(int)
     def press_game(self, s):
         print(s)
         self.stack.setCurrentIndex(s)
+
+    def add_plugin(self, plugin_list):
+        for plugin in plugin_list:
+            self.global_game_window.add_run_button(plugin.run_icon,
+                                                   plugin.name, 1)
+            self.stack.addWidget(plugin)
+
+    def keyPressEvent(self, QKeyEvent):
+        if QKeyEvent.key() == QtCore.Qt.Key_1:
+            self.stack.setCurrentIndex(1)
+        elif QKeyEvent.key() == QtCore.Qt.Key_0:
+            self.stack.setCurrentIndex(0)

@@ -1,11 +1,12 @@
 
 base_games_dir: 'games'
 mod_entry_point: main_game
-class_entry_point: MainGame
+class_entry_point: BaseGameWidget
 
 
 plugins:
-    admin
-    cube
+    - admin
+
+
 
 

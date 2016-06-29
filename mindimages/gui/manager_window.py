@@ -83,7 +83,7 @@ class MangerWindow(gui.MenegerFrame):
     def set_actions_setting_buttons(self):
         self.parent.register_control(self.exit, "exit")
 
-    def create_game_button(self, path, name, index):
+    def add_run_button(self, path, name, index):
         return self.tool_game_box.create_button(path, name, index,
                                                 self.cfg[
                                                     "icon_game_size"])
