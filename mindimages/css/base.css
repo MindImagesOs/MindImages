@@ -49,13 +49,7 @@ QFrame#setting_box {
 }
 
 
-/*QPushButton#game1 {*/
-    /*border: 5px solid #adadad;*/
-/*}*/
 
-QToolButton#seqgametool {
-    border: 5px solid red;
-}
 
 /*-------------SETTINGS_BUTTONS-----------------*/
 
@@ -137,34 +131,17 @@ QToolButton#prev
     border-image: url(resources/icons/prev.png);
 }
 
-/*--------------- GAME ----------------*/
+/*--------------- GAMES RUN BUTTON ----------------*/
 
-GameButton {
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-left: none;
-    /*margin-right: 20px;*/
+
+
+QToolButton#admin {
+    border: 1px solid #25c5ff;
+    border-radius: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
-
-
-QToolButton#seqgametool {
-    margin-top: 50px;
-    border-image: url(resources/icons/seqgame/tool.png);
-}
-
-QToolButton#seqgametool:hover {
-    border-image: url(resources/icons/seqgame/tool_hover.png);
-}
-
-/*QToolButton#editgametool {*/
-    /*margin-top: 50px;*/
-    /*border-image: url(resources/icons/editgametool/tool.png);*/
-/*}*/
-
-/*QToolButton#editgametool:hover {*/
-    /*margin-top: 50px;*/
-    /*border-image: url(resources/icons/editgametool/tool_hover.png);*/
-/*}*/
 

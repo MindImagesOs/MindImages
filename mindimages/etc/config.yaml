@@ -3,7 +3,7 @@
 global_game_window:
   # размеры иконок
   icon_setting_size: 40
-  icon_game_size: 82
+  icon_game_size: 62
   # между кнопками в нижней панели
   spacing_setting: 50
   # от кнопок до края панели в нижней панели

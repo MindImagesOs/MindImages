@@ -25,13 +25,16 @@ config = get_config(config_path)
 css_path = os.path.join('css', config["base"]["css_default"])
 
 
+config_games_plugin = "games_plugins.yaml"
+config_games_plugin_path = os.path.join('etc', config_games_plugin)
+
 def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open('{}'.format(css_path), "r").read())
     m = base_window.Main(config)
 
 
-    plugin = plugin_manager.Manager()
+    plugin = plugin_manager.Manager(get_config(config_games_plugin_path))
 
     m.add_plugin(plugin.plugins_list())
 

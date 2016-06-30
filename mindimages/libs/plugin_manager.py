@@ -1,22 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-import yaml
-
 from PyQt5 import QtWidgets
-from PyQt5 import QtCore
 
-config_default = "games_plugins.yaml"
-config_path = os.path.join('etc', config_default)
-
-def get_config(path):
-    with open(path, "r") as obj:
-        return yaml.load(obj)
 
 class Manager:
-    def __init__(self):
-        self.config = get_config(config_path)
+    def __init__(self, config):
+        self.config = config
 
 
     def plugins_list(self):
