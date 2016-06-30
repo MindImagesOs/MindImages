@@ -4,8 +4,17 @@
 
 import sys
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import QObject
 
-class Tool(QtWidgets.QFrame):
-    def __init__(self):
+
+class AbsGui(QObject):
+    def __init__(self, name, parent):
         super().__init__()
-        self.setStyleSheet("background-color: cyan")
+        self.setObjectName(name)
+        self.setParent(parent)
+
+class AdminTool(QtWidgets.QFrame, AbsGui):
+    def __init__(self, name, parent):
+        super().__init__(name, parent)
+        print(self.objectName())
+

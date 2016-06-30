@@ -145,3 +145,39 @@ QToolButton#admin {
 }
 
 
+/*            ADMIN_GAME           */
+
+QFrame#admin_top_tool {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+
+    margin-bottom: 28px;
+
+}
+
+QFrame#admin_left_tool {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    margin-right: 28px;
+
+
+
+}
+
+/*QGraphicsView#admin {*/
+    /*border-top: 1px solid lightgray;*/
+    /*border-right: 1px solid lightgray;*/
+    /*border-bottom: 1px solid lightgray;*/
+    /*border-left: 1px solid lightgray;*/
+/*}*/
+
+QGraphicsView#admin {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+}
