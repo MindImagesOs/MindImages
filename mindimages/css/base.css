@@ -181,3 +181,7 @@ QGraphicsView#admin {
     border-bottom: none;
     border-left: none;
 }
+
+CentralWidget {
+    margin-right: 128px;
+}

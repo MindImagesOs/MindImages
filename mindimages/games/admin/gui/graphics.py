@@ -30,6 +30,7 @@ class View(QtWidgets.QGraphicsView):
     def __init__(self, size=None, scene=None, parent=None):
         super().__init__()
         self.setFixedSize(size, size)
+        self.setScene(scene)
 
 
 if __name__ == '__main__':

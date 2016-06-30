@@ -1,5 +1,6 @@
 
 
-top_tool_height: 60
+top_tool_height: 80
 left_tool_width: 100
 view-size: 502
+scene_geometry: [0, 0, 500, 500]

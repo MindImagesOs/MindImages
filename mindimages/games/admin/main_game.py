@@ -51,28 +51,39 @@ class CentralWidget(QtWidgets.QFrame):
 
 class BaseGameWidget(plugin_manager.Plugin):
     def __init__(self):
+        """
+        базовое окно
+        """
         super().__init__()
-        self.setStyleSheet("background-color: #F5F5F5")
+        self.setStyleSheet("background-color: #DEDEDE")
         self._run_icon = 'resources/icons/base_tool.png'
         self._plugin_name = 'admin'
         self.cfg = get_config(config_path)
 
         self.box = QtWidgets.QVBoxLayout(self)
+
+        # окно контейнер в котором размещены рабочие виджеты
         self.center_widget = CentralWidget()
         self.box.addWidget(self.center_widget,
                            alignment=QtCore.Qt.AlignCenter)
 
-        self.view = graphics.View(self.cfg['view-size'])
-        self.view.setStyleSheet("background-color: #FCFCFC")
+        # сцена
+        self.scene = graphics.Scene(self.cfg['scene_geometry'])
+
+        # представление
+        self.view = graphics.View(self.cfg['view-size'],
+                                  scene=self.scene,
+                                  parent=self)
+        self.view.setStyleSheet("background-color: #F3F3F3")
         self.view.setObjectName('admin')
         self.center_widget.add_view(self.view)
         self.top_tool = tools.AdminTool('admin_top_tool', self)
-        self.top_tool.setStyleSheet("background-color: #EFEFEF")
+        self.top_tool.setStyleSheet("background-color: #D0D0D0")
         self.top_tool.setFixedHeight(self.cfg['top_tool_height'])
 
         self.center_widget.add_top_tool(self.top_tool)
         self.left_tool = tools.AdminTool('admin_left_tool', self)
-        self.left_tool.setStyleSheet("background-color: #EFEFEF")
+        self.left_tool.setStyleSheet("background-color: #D0D0D0")
         self.left_tool.setFixedWidth(self.cfg['left_tool_width'])
         self.center_widget.add_left_tool(self.left_tool)
 
