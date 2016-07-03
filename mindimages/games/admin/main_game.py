@@ -15,10 +15,13 @@ from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 
 from games.admin.gui import graphics, tools
+from games.admin.scr import seqlogic
 from libs import plugin_manager
+
 
 root = os.path.join(os.path.dirname(__file__))
 config_path = os.path.join(root, 'etc/config.yaml')
+seq_path = os.path.join(root, 'etc/seq.yaml')
 
 
 def get_config(path):
@@ -67,6 +70,8 @@ class BaseGameWidget(plugin_manager.Plugin):
         self.box.addWidget(self.center_widget,
                            alignment=QtCore.Qt.AlignCenter)
 
+        self.seq = seqlogic.SeqImages(get_config(seq_path))
+
         # сцена
         self.scene = graphics.Scene(self.cfg['scene_geometry'])
 
@@ -77,12 +82,18 @@ class BaseGameWidget(plugin_manager.Plugin):
         self.view.setStyleSheet("background-color: #F3F3F3")
         self.view.setObjectName('admin')
         self.center_widget.add_view(self.view)
-        self.top_tool = tools.AdminTool('admin_top_tool', self)
+        self.top_tool = tools.AdminTool('admin_top_tool',
+                                        self,
+                                        tools.AdminTool.horizontal,
+                                        self.cfg)
         self.top_tool.setStyleSheet("background-color: #D0D0D0")
         self.top_tool.setFixedHeight(self.cfg['top_tool_height'])
 
         self.center_widget.add_top_tool(self.top_tool)
-        self.left_tool = tools.AdminTool('admin_left_tool', self)
+        self.left_tool = tools.AdminTool('admin_left_tool',
+                                         self,
+                                         tools.AdminTool.vertical,
+                                         self.cfg)
         self.left_tool.setStyleSheet("background-color: #D0D0D0")
         self.left_tool.setFixedWidth(self.cfg['left_tool_width'])
         self.center_widget.add_left_tool(self.left_tool)

@@ -91,3 +91,27 @@ class GameButton(QtWidgets.QToolButton, AbsGui):
     #     object_name - {};
     #     index - {}
     #     """.format(self.__class__.__name__, self._name, self.index)
+
+
+class ToolWidget(Frame):
+    horizontal = 'Horizontal'
+    vertical = 'Vertical'
+    def __init__(self, name, parent, direction, cfg):
+        super().__init__(name, parent)
+        self.cfg = cfg
+        self.direction = direction
+        self.box = self.create_box()
+
+
+    def create_box(self):
+        if self.direction == self.horizontal:
+            box = QtWidgets.QHBoxLayout(self)
+        elif self.direction == self.vertical:
+            box = QtWidgets.QVBoxLayout(self)
+        else: raise Exception('нет такого направления')
+        box.setSpacing(0)
+        box.setContentsMargins(0, 0, 0, 0)
+        return box
+
+    def add_item(self, item):
+        self.box.addWidget(item)

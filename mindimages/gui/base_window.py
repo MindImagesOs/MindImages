@@ -34,18 +34,10 @@ class Main(QtWidgets.QMainWindow):
     def exit(self):
         sys.exit()
 
-    def plugin_valid(self, *atr):
-        for i in atr:
-            if i is None:
-                raise Exception("ERROR - {} not None".format(i))
-
     @QtCore.pyqtSlot(int)
     def press_game(self, s):
         pass
         self.stack.setCurrentIndex(s)
-
-    def return_to_global_window(self):
-        self.stack.setCurrentIndex(0)
 
     @pyqtSlot(int)
     def press_game(self, s):
@@ -63,4 +55,7 @@ class Main(QtWidgets.QMainWindow):
         if QKeyEvent.key() == QtCore.Qt.Key_1:
             self.stack.setCurrentIndex(1)
         elif QKeyEvent.key() == QtCore.Qt.Key_0:
-            self.stack.return_to_content()
+            self.return_to_content()
+
+    def return_to_content(self):
+        self.stack.return_to_content()

@@ -1,0 +1,8 @@
+seq:
+    - [100, 1000, 1010]
+    - [100, 1000, 1010]
+
+
+strategy: 'admin'
+
+geometry_profile: 'games/geometry_profiles/admin.yaml'
