@@ -45,11 +45,12 @@ class Main(QtWidgets.QMainWindow):
 
     def add_plugin(self, plugin_list):
         for index, plugin in enumerate(plugin_list, start=1):
+            widget = plugin(self)
             run_btn = self.global_game_window.add_run_button(
-                plugin.run_icon,
-                plugin.name, index)
+                widget.run_icon,
+                widget.name, index)
             run_btn.clicked.connect(partial(self.press_game, index))
-            self.stack.addWidget(plugin)
+            self.stack.addWidget(widget)
 
     def keyPressEvent(self, QKeyEvent):
         if QKeyEvent.key() == QtCore.Qt.Key_1:

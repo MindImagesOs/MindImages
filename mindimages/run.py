@@ -34,7 +34,7 @@ def main():
     m = base_window.Main(config)
 
 
-    plugin = plugin_manager.Manager(get_config(config_games_plugin_path))
+    plugin = plugin_manager.Manager(get_config(config_games_plugin_path), m)
 
     m.add_plugin(plugin.plugins_list())
 

@@ -10,7 +10,9 @@ from gui import gui_abs
 
 
 class AdminTool(gui_abs.ToolWidget):
-    def __init__(self, name, parent, direction, cfg):
-        super().__init__(name, parent, direction, cfg)
+    def __init__(self, name, parent, direction, icon_dir):
+        super().__init__(name, parent, direction, icon_dir)
+
+
 
 

@@ -4,7 +4,7 @@
 """
 модуль предаставляет классы наслдеованые от qt классов для использования в основной программе
 """
-
+import os
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QObject
@@ -96,9 +96,10 @@ class GameButton(QtWidgets.QToolButton, AbsGui):
 class ToolWidget(Frame):
     horizontal = 'Horizontal'
     vertical = 'Vertical'
-    def __init__(self, name, parent, direction, cfg):
+    def __init__(self, name, parent, direction, icon_dir):
         super().__init__(name, parent)
-        self.cfg = cfg
+
+        self.icon_dir = icon_dir
         self.direction = direction
         self.box = self.create_box()
 
@@ -109,9 +110,17 @@ class ToolWidget(Frame):
         elif self.direction == self.vertical:
             box = QtWidgets.QVBoxLayout(self)
         else: raise Exception('нет такого направления')
-        box.setSpacing(0)
-        box.setContentsMargins(0, 0, 0, 0)
         return box
 
-    def add_item(self, item):
-        self.box.addWidget(item)
+    def set_margins(self, l, t, r, b):
+        self.box.setContentsMargins(l, t, r, b)
+
+    def set_spacing(self, s):
+        self.box.setSpacing(s)
+
+    def add_items(self, items, ext='.png'):
+        for i in items:
+            path_icon = os.path.join(self.icon_dir, i + ext)
+            btn = GameButton(path_icon, i, i, self)
+            btn.clicked.connect(self.parent().return_to_content)
+            self.box.addWidget(btn)

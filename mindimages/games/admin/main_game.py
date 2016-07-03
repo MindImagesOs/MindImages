@@ -21,6 +21,7 @@ from libs import plugin_manager
 
 root = os.path.join(os.path.dirname(__file__))
 config_path = os.path.join(root, 'etc/config.yaml')
+icon_dir = os.path.join(root, 'resources/icons')
 seq_path = os.path.join(root, 'etc/seq.yaml')
 
 
@@ -53,11 +54,14 @@ class CentralWidget(QtWidgets.QFrame):
 
 
 class BaseGameWidget(plugin_manager.Plugin):
-    def __init__(self):
+    def __init__(self, parent):
         """
         базовое окно
         """
         super().__init__()
+        self._parent = parent
+        self.setParent(self._parent)
+
         self.setStyleSheet("background-color: #DEDEDE")
         self._run_icon = 'resources/icons/base_tool.png'
         self._plugin_name = 'admin'
@@ -82,20 +86,27 @@ class BaseGameWidget(plugin_manager.Plugin):
         self.view.setStyleSheet("background-color: #F3F3F3")
         self.view.setObjectName('admin')
         self.center_widget.add_view(self.view)
+
+
         self.top_tool = tools.AdminTool('admin_top_tool',
                                         self,
                                         tools.AdminTool.horizontal,
-                                        self.cfg)
+                                        icon_dir)
         self.top_tool.setStyleSheet("background-color: #D0D0D0")
         self.top_tool.setFixedHeight(self.cfg['top_tool_height'])
+        self.top_tool.set_margins(*self.cfg['h_tool_box_margin'])
+        self.top_tool.set_spacing(self.cfg['h_tool_box_spacing'])
+        self.top_tool.add_items(self.cfg['top_buttons'])
 
         self.center_widget.add_top_tool(self.top_tool)
         self.left_tool = tools.AdminTool('admin_left_tool',
                                          self,
                                          tools.AdminTool.vertical,
-                                         self.cfg)
+                                         icon_dir)
         self.left_tool.setStyleSheet("background-color: #D0D0D0")
         self.left_tool.setFixedWidth(self.cfg['left_tool_width'])
+        self.left_tool.set_margins(*self.cfg['v_tool_box_margin'])
+        self.left_tool.set_spacing(self.cfg['v_tool_box_spacing'])
         self.center_widget.add_left_tool(self.left_tool)
 
     @property
@@ -105,3 +116,6 @@ class BaseGameWidget(plugin_manager.Plugin):
     @property
     def name(self):
         return self._plugin_name
+
+    def return_to_content(self):
+        self._parent.return_to_content()
