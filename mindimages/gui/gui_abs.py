@@ -80,10 +80,12 @@ class SettingButton(QtWidgets.QPushButton, AbsGui):
         self.setFixedSize(size + 2, size + 2)
 
 class GameButton(QtWidgets.QToolButton, AbsGui):
-    def __init__(self, path, name, index, parent):
+    def __init__(self, path, name, index, parent, size=None):
         super().__init__(name, parent)
         self.index = index
         self.setIcon(QtGui.QIcon(path))
+        if size is not None:
+            self.setIconSize(QtCore.QSize(size, size))
 
     # def __repr__(self):
     #     return """
@@ -118,9 +120,13 @@ class ToolWidget(Frame):
     def set_spacing(self, s):
         self.box.setSpacing(s)
 
-    def add_items(self, items, ext='.png'):
+    def add_items(self, items, ext='.png', size=None):
         for i in items:
-            path_icon = os.path.join(self.icon_dir, i + ext)
-            btn = GameButton(path_icon, i, i, self)
-            btn.clicked.connect(self.parent().return_to_content)
-            self.box.addWidget(btn)
+            if i == 'Stretch':
+                self.box.addStretch()
+            else:
+                path_icon = os.path.join(self.icon_dir, i + ext)
+                btn = GameButton(path_icon, i, i, self, size)
+
+                btn.clicked.connect(self.parent().return_to_content)
+                self.box.addWidget(btn)

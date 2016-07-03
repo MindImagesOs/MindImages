@@ -1,7 +1,7 @@
 
 
-top_tool_height: 80
-left_tool_width: 100
+top_tool_height: 100
+left_tool_width: 150
 view-size: 502
 scene_geometry: [0, 0, 500, 500]
 
@@ -15,6 +15,8 @@ h_tool_box_margin: [0, 0, 0, 0]
 
 # расстояние между елементами внутри контейнера
 h_tool_box_spacing: 0
+
+h_top_buttons_size: 32
 
 # панель инструментов вертикальная
 
@@ -35,7 +37,9 @@ v_tool_box_margin: [0, 0, 0, 0]
 # расстояние между елементами внутри контейнера
 v_tool_box_Spacing: 0
 
+v_top_buttons_size: 30
+
 # кнопки панели
 
-top_buttons: ['close_game']
+top_buttons: ['Stretch', 'close_game']
 

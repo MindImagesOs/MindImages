@@ -96,7 +96,8 @@ class BaseGameWidget(plugin_manager.Plugin):
         self.top_tool.setFixedHeight(self.cfg['top_tool_height'])
         self.top_tool.set_margins(*self.cfg['h_tool_box_margin'])
         self.top_tool.set_spacing(self.cfg['h_tool_box_spacing'])
-        self.top_tool.add_items(self.cfg['top_buttons'])
+        self.top_tool.add_items(self.cfg['top_buttons'],
+                                size=self.cfg['h_top_buttons_size'])
 
         self.center_widget.add_top_tool(self.top_tool)
         self.left_tool = tools.AdminTool('admin_left_tool',

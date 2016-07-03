@@ -185,3 +185,9 @@ QGraphicsView#admin {
 CentralWidget {
     margin-right: 128px;
 }
+
+QToolButton#close_game {
+    border: none;
+    margin-right: 20px;
+
+}
