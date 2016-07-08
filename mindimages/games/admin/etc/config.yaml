@@ -35,11 +35,11 @@ h_tool_box_Spacing: 0
 # расстояние от контейнера до краёв панели
 v_tool_box_margin: [0, 0, 0, 0]
 # расстояние между елементами внутри контейнера
-v_tool_box_Spacing: 0
+v_tool_box_Spacing: 20
 
 v_top_buttons_size: 30
 
 # кнопки панели
 
-top_buttons: ['Stretch', 'close_game']
+top_buttons: ['Stretch', 'profiles', 'close_game']
 

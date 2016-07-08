@@ -60,3 +60,5 @@ class Main(QtWidgets.QMainWindow):
 
     def return_to_content(self):
         self.stack.return_to_content()
+
+

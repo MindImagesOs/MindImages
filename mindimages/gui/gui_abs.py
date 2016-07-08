@@ -5,6 +5,7 @@
 модуль предаставляет классы наслдеованые от qt классов для использования в основной программе
 """
 import os
+from functools import partial
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QObject
@@ -128,5 +129,8 @@ class ToolWidget(Frame):
                 path_icon = os.path.join(self.icon_dir, i + ext)
                 btn = GameButton(path_icon, i, i, self, size)
 
-                btn.clicked.connect(self.parent().return_to_content)
+                btn.clicked.connect(partial(self.parent().tool_actions, i))
                 self.box.addWidget(btn)
+
+    def tool_actions(self, act):
+        self.parent().tool_actions(act)

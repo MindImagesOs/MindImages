@@ -118,5 +118,11 @@ class BaseGameWidget(plugin_manager.Plugin):
     def name(self):
         return self._plugin_name
 
-    def return_to_content(self):
+    def close_game(self):
         self._parent.return_to_content()
+
+    def profiles(self):
+        print('profiles')
+
+    def tool_actions(self, act):
+        getattr(self, act)()

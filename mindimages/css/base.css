@@ -191,3 +191,7 @@ QToolButton#close_game {
     margin-right: 20px;
 
 }
+
+QToolButton#profiles {
+    border: none;
+}
